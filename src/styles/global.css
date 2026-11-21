@@ -1,0 +1,372 @@
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- Variables ---------- */
+:root {
+  --brand: #2e7d32;
+  --brand-dark: #1b5e20;
+  --brand-light: #e8f5e9;
+  --accent-restaurant: #e65100;
+  --accent-ngo: #1565c0;
+  --accent-volunteer: #6a1b9a;
+  --text: #1f2933;
+  --muted: #5f6b7a;
+  --bg: #f7f9f7;
+  --surface: #ffffff;
+  --border: #d9e2d9;
+  --warn: #b26a00;
+  --danger: #b71c1c;
+  --radius: 10px;
+  --space: 1rem;
+}
+
+/* ---------- Accent classes ---------- */
+.accent-restaurant {
+  --accent: var(--accent-restaurant);
+}
+
+.accent-ngo {
+  --accent: var(--accent-ngo);
+}
+
+.accent-volunteer {
+  --accent: var(--accent-volunteer);
+}
+
+/* ---------- Header & navigation (mobile first) ---------- */
+.app-header {
+  background: var(--brand);
+  color: #fff;
+  padding: 0.75rem var(--space);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.app-header .brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  list-style: none;
+  padding: 0;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.85;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  opacity: 1;
+  background: var(--brand-dark);
+}
+
+.nav-link.active {
+  opacity: 1;
+  background: #fff;
+  color: var(--brand-dark);
+  font-weight: 600;
+}
+
+/* ---------- Page ---------- */
+.page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.page-header {
+  border-left: 6px solid var(--accent, var(--brand));
+  padding-left: var(--space);
+}
+
+.page-header h1 {
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+.page-header p {
+  color: var(--muted);
+  margin-top: 0.35rem;
+}
+
+.page-section h2 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- Cards ---------- */
+.card-grid {
+  display: grid;
+  gap: var(--space);
+  grid-template-columns: 1fr;
+}
+
+.card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--accent, var(--brand));
+  border-radius: var(--radius);
+  padding: var(--space);
+  text-decoration: none;
+  color: inherit;
+}
+
+.card h2,
+.card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.35rem;
+}
+
+.card p {
+  color: var(--muted);
+}
+
+a.card:hover,
+a.card:focus-visible {
+  border-color: var(--accent, var(--brand));
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--accent, var(--brand));
+  background: var(--accent, var(--brand));
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent, var(--brand));
+}
+
+/* ---------- Forms ---------- */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: var(--space);
+}
+
+.form-field label {
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.form-field input:disabled,
+.form-field select:disabled,
+.form-field textarea:disabled {
+  background: #eef1ee;
+  color: var(--muted);
+}
+
+.form-field .hint {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* ---------- Badges (status variants) ---------- */
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #eceff1;
+  color: #37474f;
+}
+
+.badge-posted {
+  background: #fff3e0;
+  color: var(--accent-restaurant);
+}
+
+.badge-claimed {
+  background: #e3f2fd;
+  color: var(--accent-ngo);
+}
+
+.badge-collected {
+  background: #f3e5f5;
+  color: var(--accent-volunteer);
+}
+
+.badge-delivered {
+  background: var(--brand-light);
+  color: var(--brand-dark);
+}
+
+.badge-expired {
+  background: #ffebee;
+  color: var(--danger);
+}
+
+.status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* ---------- Empty state & notices ---------- */
+.empty-state {
+  text-align: center;
+  padding: 1.5rem var(--space);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.empty-state h3 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.empty-state p {
+  color: var(--muted);
+}
+
+.note {
+  font-size: 0.9rem;
+  color: var(--warn);
+}
+
+.disclaimer {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---------- Footer ---------- */
+.app-footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: var(--space);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* ---------- Not found ---------- */
+.not-found {
+  text-align: center;
+  padding: 3rem var(--space);
+}
+
+.not-found h1 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Home intro ---------- */
+.hero h1 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: var(--brand-dark);
+}
+
+.hero p {
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+/* ---------- Tablet & desktop ---------- */
+@media (min-width: 600px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .app-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 960px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .app-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--space) 1.5rem;
+  }
+}
