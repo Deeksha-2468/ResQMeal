@@ -504,3 +504,19 @@ a.card:focus-visible {
   font-weight: 600;
 }
 
+/* ---------- Milestone 4: volunteer dashboard (rm-) ---------- */
+.hint {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.rm-volunteer-tasks {
+  --accent: var(--accent-volunteer);
+}
+
+.rm-party {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
