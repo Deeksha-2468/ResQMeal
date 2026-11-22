@@ -1,5 +1,8 @@
 # ResQMeal
 
+Live Demo: https://resqmeal-coral.vercel.app/
+
+
 ResQMeal is a food-rescue coordination platform connecting restaurants, NGOs/community kitchens and volunteers so that surplus food is collected and delivered where it is needed.
 
 ## Run locally
