@@ -24,10 +24,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <p className="note">
-        Milestone 1 preview — no live data is shown in this build.
-      </p>
     </>
   );
 }
