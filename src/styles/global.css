@@ -370,3 +370,137 @@ a.card:focus-visible {
     padding: var(--space) 1.5rem;
   }
 }
+
+/* ---------- Milestone 2: donation form, auth panel and list (rm-) ---------- */
+.rm-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space);
+}
+
+.rm-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: var(--space);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space);
+}
+
+.rm-field-wide {
+  grid-column: 1 / -1;
+}
+
+.rm-field-error {
+  color: var(--danger);
+  font-size: 0.875rem;
+}
+
+.rm-form-error-summary {
+  color: var(--danger);
+  background: #ffebee;
+  border: 1px solid var(--danger);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+}
+
+.rm-form-success {
+  color: var(--brand-dark);
+  background: var(--brand-light);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+}
+
+.rm-fieldset {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.rm-fieldset legend {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.rm-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.rm-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 400;
+}
+
+.rm-btn:disabled,
+.rm-btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #9e9e9e;
+  border-color: #9e9e9e;
+}
+
+.rm-link-button {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--accent, var(--brand));
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.rm-link-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rm-card-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rm-donation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent, var(--brand));
+  border-radius: var(--radius);
+  padding: var(--space);
+}
+
+.rm-note-passed {
+  color: var(--warn);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+@media (min-width: 720px) {
+  .rm-form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.rm-ngo-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.rm-ngo-label {
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+

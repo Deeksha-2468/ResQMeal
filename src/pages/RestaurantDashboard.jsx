@@ -1,44 +1,85 @@
+import { useState } from "react";
 import PageHeader from "../components/PageHeader.jsx";
-import EmptyState from "../components/EmptyState.jsx";
+import AuthPanel from "../components/AuthPanel.jsx";
+import DonationForm from "../components/DonationForm.jsx";
+import DonationList from "../components/DonationList.jsx";
+import { useAuth } from "../auth/AuthContext.jsx";
 
 export default function RestaurantDashboard() {
+  const { user, loading, configured, signOut } = useAuth();
+  const [refreshKey, setRefreshKey] = useState(0);
+  const [signingOut, setSigningOut] = useState(false);
+  const [signOutError, setSignOutError] = useState("");
+
+  const handleSignOut = async () => {
+    setSigningOut(true);
+    setSignOutError("");
+    const { error } = await signOut();
+    setSigningOut(false);
+    if (error) setSignOutError(error.message || "Sign out failed. Please try again.");
+  };
+
   return (
     <>
       <PageHeader title="Restaurant dashboard" accent="accent-restaurant" />
 
-      <section className="page-section">
-        <h2>Post surplus food</h2>
-        <fieldset disabled>
-          <div className="form-field">
-            <label htmlFor="resto-item">Food item</label>
-            <input id="resto-item" type="text" placeholder="e.g. Vegetable biryani, 10 portions" />
-          </div>
-          <div className="form-field">
-            <label htmlFor="resto-pickup">Pickup window</label>
-            <input id="resto-pickup" type="text" placeholder="e.g. 9:00 PM – 10:00 PM" />
-          </div>
-          <button type="button" className="btn" disabled>
-            Post donation
-          </button>
-        </fieldset>
-        <p className="hint">Donation form arrives in Milestone 2.</p>
-      </section>
+      {!configured ? (
+        <section className="page-section">
+          <p className="note" role="alert">
+            Supabase is not configured in this environment. Set VITE_SUPABASE_URL and
+            VITE_SUPABASE_ANON_KEY, then restart the dev server, to post and view donations.
+          </p>
+        </section>
+      ) : loading ? (
+        <section className="page-section">
+          <p className="hint" role="status">Checking your session...</p>
+        </section>
+      ) : !user ? (
+        <section className="page-section">
+          <AuthPanel />
+        </section>
+      ) : (
+        <>
+          <section className="page-section rm-stack">
+            <div className="status-row">
+              <span>
+                Signed in as <strong>{user.email}</strong>
+              </span>
+              <button
+                type="button"
+                className="btn btn-secondary rm-btn"
+                onClick={handleSignOut}
+                disabled={signingOut}
+              >
+                {signingOut ? "Signing out..." : "Sign out"}
+              </button>
+            </div>
+            {signOutError && (
+              <p className="rm-field-error" role="alert">
+                {signOutError}
+              </p>
+            )}
+          </section>
 
-      <section className="page-section">
-        <h2>Active donations</h2>
-        <EmptyState
-          title="No active donations"
-          message="Donations you post will appear here."
-        />
-      </section>
+          <section className="page-section">
+            <h2>Post donation</h2>
+            <DonationForm onSaved={() => setRefreshKey((k) => k + 1)} />
+          </section>
 
-      <section className="page-section">
-        <h2>Donation history</h2>
-        <EmptyState
-          title="No past donations"
-          message="Completed and expired donations will be listed here."
-        />
-      </section>
+          <section className="page-section">
+            <h2>Active donations</h2>
+            <DonationList refreshKey={refreshKey} />
+          </section>
+
+          <section className="page-section">
+            <h2>Donation history</h2>
+            <p className="hint">
+              All of your donations are listed under Active donations above. Completed and expired
+              donations will be separated here in a later milestone.
+            </p>
+          </section>
+        </>
+      )}
     </>
   );
 }
